@@ -1,0 +1,32 @@
+# === Env files (keep secrets out) ===
+.env
+.env.*   # harmless safety if you ever create .env.local, etc.
+
+# === Node dependencies anywhere (root, Backend, Frontend) ===
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# === Build artifacts ===
+Backend/dist/
+Backend/build/
+Frontend/dist/
+Frontend/build/
+
+# === Logs, caches, temp ===
+logs/
+**/*.log
+.cache/
+.tmp/
+.eslintcache
+
+# === Test output ===
+coverage/
+.nyc_output/
+
+# === OS / editor files ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
