@@ -42,33 +42,56 @@ export default function Home(){
   }
 
   return (
-    <Container sx={{ py: 3 }}>
-      <Paper sx={{ p: 2, mb: 3, display: 'flex', gap: 1 }}>
-        <TextField
-          fullWidth size="small" placeholder="Search sweets..."
-          value={q} onChange={e => setQ(e.target.value)}
-          onKeyDown={(e)=> e.key==='Enter' && search()}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={search}><SearchIcon /></IconButton>
-              </InputAdornment>
-            )
+    <div className="home-center-container">
+      <Container
+        maxWidth={false}
+        sx={{
+          mt: 2,
+          mb: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          px: 2
+        }}
+      >
+        <Typography variant="h3" align="center" sx={{ mb: 2, fontWeight: 700 }}>
+          Browse Sweets
+        </Typography>
+        <Paper sx={{ p: 2, mb: 3, width: '100%', maxWidth: 700, mx: 'auto', display: 'flex', gap: 1 }}>
+          <TextField
+            fullWidth size="small" placeholder="Search sweets..."
+            value={q} onChange={e => setQ(e.target.value)}
+            onKeyDown={(e)=> e.key==='Enter' && search()}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={search}><SearchIcon /></IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Paper>
+
+        <Typography variant="subtitle1" sx={{ mb: 1 }}>
+          {loading ? 'Loading…' : `Showing ${items.length} item(s)`}
+        </Typography>
+
+        <Grid
+          container
+          spacing={3}
+          justifyContent="center"
+          sx={{
+            maxWidth: '100px', // Set your desired max width for the grid
+            margin: '0 auto'
           }}
-        />
-      </Paper>
-
-      <Typography variant="h6" sx={{ mb: 1 }}>
-        {loading ? 'Loading…' : `Sweets (${items.length})`}
-      </Typography>
-
-      <Grid container spacing={2}>
-        {items.map(s => (
-          <Grid key={s._id} item xs={12} sm={6} md={4} lg={3}>
-            <SweetCard sweet={s} onPurchase={purchase} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+        >
+          {items.map(s => (
+            <Grid key={s._id} item xs={12} sm={6} md={4} lg={3}>
+              <SweetCard sweet={s} onPurchase={purchase} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </div>
   )
 }

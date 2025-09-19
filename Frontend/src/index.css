@@ -54,6 +54,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+body {
+  background:
+    radial-gradient(1200px 600px at -10% 0%, rgba(123,63,228,0.06), transparent 60%),
+    radial-gradient(1000px 500px at 110% 100%, rgba(255,122,89,0.06), transparent 55%);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
