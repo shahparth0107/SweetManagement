@@ -4,7 +4,8 @@ const User = require("../models/users");
 
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Minimum eight characters, at least one letter and one number
+// const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Minimum eight characters, at least one letter and one number
+const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
 function validateInput(body){
     const name = (body.username).toString().trim();
