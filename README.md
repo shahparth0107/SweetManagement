@@ -10,21 +10,21 @@ Monorepo with clear TDD setup and scripts for smooth local dev and CI.
 > **Folder layout**
 > 
 SweetManagement/
-├─ Backend/
-│  ├─ app.js
-│  ├─ config/
-│  ├─ controller/
-│  ├─ middlewear/
-│  ├─ models/
-│  ├─ routes/
-│  └─ __tests__/          # Jest tests
+├─ Backend/ <br>
+│  ├─ app.js<br>
+│  ├─ config/<br>
+│  ├─ controller/<br>
+│  ├─ middlewear/<br>
+│  ├─ models/<br>
+│  ├─ routes/<br>
+│  └─ __tests__/        # Jest tests<br>
 │
-├─ Frontend/
-│  └─ src/
-│     └─ __tests__/       # Jest + RTL tests (if included)
+├─ Frontend/<br>
+│  └─ src/<br>
+│     └─ __tests__/       # Jest + RTL tests (if included)<br>
 │
-├─ TESTING.md
-└─ test-runner.js
+├─ TESTING.md<br>
+└─ test-runner.js<br>
 
 
 ## Table of Contents
@@ -74,20 +74,20 @@ SweetManagement/
 
 ### 3.1) Clone
 ```bash```
-git clone https://github.com/shahparth0107/SweetManagement.git
+git clone https://github.com/shahparth0107/SweetManagement.git<br>
 cd SweetManagement
 
 ### 3.2) Backend
-cd Backend
-cp .env.example .env   # if present; else create .env (see below)
-npm install
-npm run dev            # dev with nodemon (if configured)
-npm start              # production start
+cd Backend<br>
+cp .env.example .env   # if present; else create .env (see below)<br>
+npm install<br>
+npm run dev            # dev with nodemon (if configured)<br>
+npm start              # production start<br>
 
 ### 3.3) Frontend
-cd ../Frontend
-npm ci                 # or: npm install
-npm run dev            # starts Vite dev server
+cd ../Frontend<br>
+npm install<br>
+npm run dev            # starts Vite dev server<br>
 
 ## 4) Screenshot
 
@@ -106,22 +106,22 @@ npm run dev            # starts Vite dev server
 
 ## 5) My AI Usage 
 ### Tools used
-###ChatGPT (GPT-5 Thinking)
-##1.) Authored backend middleware (JWT verification, role guard, error handling).
-##2.) Implemented the Item Reduce / inventory decrement API (validation, safe updates, response schema).
-##3.) Helped scaffold and refine the Frontend (components/pages, state management patterns, API client usage, form flows).
-##4.) Assisted with documentation polish and clarifying test commands/sections.
+ChatGPT (GPT-5 Thinking)
+1.) Authored backend middleware (JWT verification, role guard, error handling).<br>
+2.) Implemented the Item Reduce / inventory decrement API (validation, safe updates, response schema).<br>
+3.) Helped scaffold and refine the Frontend (components/pages, state management patterns, API client usage, form flows).<br>
+4.) Assisted with documentation polish and clarifying test commands/sections.<br>
 
-###Cursor (for Test-Driven Development)
-##1.) Drove a TDD loop (red → green → refactor) for both Backend and Frontend.
-##2.) Generated initial Jest test scaffolds, iterated failing tests into passing code, and surfaced refactor opportunities.
-##3.) In-editor runs to quickly iterate on unit/integration tests.
+Cursor (for Test-Driven Development)<br>
+1.) Drove a TDD loop (red → green → refactor) for both Backend and Frontend.<br>
+2.) Generated initial Jest test scaffolds, iterated failing tests into passing code, and surfaced refactor opportunities.<br>
+3.) In-editor runs to quickly iterate on unit/integration tests.<br>
 
 ### How I used them
 
-##1.) Broke work into small prompts (per middleware/endpoint/component), reviewed AI output, then integrated selectively.
-##2.) Kept security & correctness on me: verified JWT handling, avoided double hashing, reviewed DB operations for concurrency and validation, and ensured ENV-based secrets.
-##3.) Followed TDD discipline with Cursor: wrote failing tests first, made them pass with minimal code, and refactored with tests as safety nets.
+1.) Broke work into small prompts (per middleware/endpoint/component), reviewed AI output, then integrated selectively.<br>
+2.) Kept security & correctness on me: verified JWT handling, avoided double hashing, reviewed DB operations for concurrency and validation, and ensured ENV-based secrets.<br>
+3.) Followed TDD discipline with Cursor: wrote failing tests first, made them pass with minimal code, and refactored with tests as safety nets.<br>
 
 
 
