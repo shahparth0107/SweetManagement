@@ -73,7 +73,7 @@ SweetManagement/
 - MongoDB (local or Atlas)
 
 ### 3.1) Clone
-```bash```
+```bash```<br>
 git clone https://github.com/shahparth0107/SweetManagement.git<br>
 cd SweetManagement
 
@@ -106,7 +106,7 @@ npm run dev            # starts Vite dev server<br>
 
 ## 5) My AI Usage 
 ### Tools used
-ChatGPT (GPT-5 Thinking)
+ChatGPT (GPT-5 Thinking)<br>
 1.) Authored backend middleware (JWT verification, role guard, error handling).<br>
 2.) Implemented the Item Reduce / inventory decrement API (validation, safe updates, response schema).<br>
 3.) Helped scaffold and refine the Frontend (components/pages, state management patterns, API client usage, form flows).<br>
