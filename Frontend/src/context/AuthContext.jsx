@@ -12,6 +12,9 @@ export function AuthProvider({ children }) {
   }, [])
 
   const login = async (email, password) => {
+    // Prevent login if already logged in
+    const saved = localStorage.getItem('auth:user')
+    if (saved) throw new Error('Already logged in. Please logout first.')
     const { data } = await AuthAPI.login({ email, password })
     setUser(data.user)
     localStorage.setItem('auth:user', JSON.stringify({ user: data.user }))

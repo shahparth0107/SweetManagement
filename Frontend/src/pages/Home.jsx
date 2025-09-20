@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { useSnackbar } from 'notistack'
 import { useAuth } from '../context/AuthContext'
 
-export default function Home(){
+export default function Home() {
   const { enqueueSnackbar } = useSnackbar()
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
@@ -42,16 +42,17 @@ export default function Home(){
   }
 
   return (
-    <div className="home-center-container">
+    <div className="center-container">
       <Container
-        maxWidth={false}
+        maxWidth="lg"
         sx={{
           mt: 2,
           mb: 4,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          px: 2
+          px: 2,
+          marginTop: '0 auto'
         }}
       >
         <Typography variant="h3" align="center" sx={{ mb: 2, fontWeight: 700 }}>
@@ -61,7 +62,7 @@ export default function Home(){
           <TextField
             fullWidth size="small" placeholder="Search sweets..."
             value={q} onChange={e => setQ(e.target.value)}
-            onKeyDown={(e)=> e.key==='Enter' && search()}
+            onKeyDown={(e) => e.key === 'Enter' && search()}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

@@ -4,7 +4,7 @@ const User = require("../models/users");
 
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-// const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Minimum eight characters, at least one letter and one number
+// const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-ZaLz\d]{8,}$/; // Minimum eight characters, at least one letter and one number
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
 function validateInput(body){
@@ -25,41 +25,48 @@ function validateInput(body){
 }
 
 exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
-  const validation = validateInput(req.body);
-  if (!validation.status) {
-    return res.status(400).json({ message: validation.message });
-  }
-
-  try {
-    // Ensure unique email
-    let user = await User.findOne({ email: email.toLowerCase() });
-    if (user) {
-      return res.status(400).json({ message: 'User already exists' });
+    const { username, email, password } = req.body;
+    const validation = validateInput(req.body);
+    if(!validation.status){
+        return res.status(400).json({ message: validation.message });
     }
+    try {
+        let user = await User.findOne({ email: email.toLowerCase() });
+        if (user) {
+            return res.status(400).json({ message: "User already exists" });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    // IMPORTANT: do NOT hash here; let the model pre-save hook hash it
-    user = new User({
-      username,
-      email: email.toLowerCase(),
-      password,          // raw password; model hook will hash
-      role: 'user',
-    });
+        user = new User({ 
+            username, 
+            email: email.toLowerCase(), 
+            password: hashedPassword, 
+            role: "user" });
 
-    await user.save();
-    return res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    console.error('Register Error:', error);
-    return res.status(500).json({ message: 'Server error' });
-  }
+        await user.save();
+        res.status(201).json({ message: "User registered successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
 };
-
 
 exports.login = async (req, res) => {
     try {
-        
-            const email = (req.body.email || "").toString().toLowerCase();
-    const password = (req.body.password || "").toString();
+        // Block login if already authenticated via JWT
+        const hdr = req.headers.authorization || '';
+        const token = hdr.startsWith('Bearer ') ? hdr.slice(7).trim() : null;
+        if (token) {
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+                return res.status(400).json({ error: "Already logged in. Please logout first." });
+            } catch (e) {
+                // ignore invalid/expired token, allow login
+            }
+        }
+
+        const email = (req.body.email || "").toString().toLowerCase();
+        const password = (req.body.password || "").toString();
 
 
         if (!email || !password) {
@@ -77,27 +84,23 @@ exports.login = async (req, res) => {
         }
 
         // Generate a new token with both userId and role
-        const token = jwt.sign(
+        const tokenOut = jwt.sign(
             { 
-                userId: user._id.toString(), // Ensure userId is a string
+                userId: user._id.toString(),
                 role: user.role 
             },
             process.env.JWT_SECRET,
             { expiresIn: '24h' }
         );
 
-        // Update user's token in database
-        // await User.findByIdAndUpdate(user._id, { token });
-
-        // Send response with user data and token
         res.status(200).json({
             message: "Login successful",
             user: {
-                _id: user._id.toString(), // Ensure _id is a string
+                _id: user._id.toString(),
                 email: user.email,
                 username: user.username,
                 role: user.role,
-                token: token // Include token in user object
+                token: tokenOut
             }
         });
 

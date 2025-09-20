@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Button, Stack, TextField, Typography } from '@mui/material';
@@ -13,13 +13,30 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [blocked, setBlocked] = useState(false);
+
+  useEffect(() => {
+    // Block registration if already logged in
+    const saved = localStorage.getItem('auth:user');
+    if (saved) {
+      enqueueSnackbar('Already logged in. Please logout first.', { variant: 'error' });
+      setBlocked(true);
+      const user = JSON.parse(saved).user;
+      setTimeout(() => nav(user.role === 'admin' ? '/admin' : '/user'), 1200);
+    }
+  }, [nav, enqueueSnackbar]);
 
   const submit = async (e) => {
     e.preventDefault();
+    // Prevent register if already logged in
+    const saved = localStorage.getItem('auth:user');
+    if (saved) {
+      enqueueSnackbar('Please logout before registering a new account.', { variant: 'error' });
+      setBlocked(true);
+      return;
+    }
     setLoading(true);
     try {
-      // NOTE: if your backend still requires only letters+numbers in password,
-      // use something like "Hello2025" instead of special chars, or update the regex.
       await register({ username, email, password });
       enqueueSnackbar('Registered! Please login.', { variant: 'success' });
       nav('/login', { replace: true });
@@ -34,10 +51,10 @@ export default function Register() {
     <AuthShell title="CREATE ACCOUNT" subtitle="SIGN UP">
       <form onSubmit={submit}>
         <Stack spacing={2}>
-          <TextField label="Username" required value={username} onChange={(e) => setUsername(e.target.value)} />
-          <TextField label="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-          <TextField label="Password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-          <Button type="submit" disabled={loading} color="secondary" variant="contained" size="large">
+          <TextField label="Username" required value={username} onChange={(e) => setUsername(e.target.value)} disabled={blocked} />
+          <TextField label="Email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={blocked} />
+          <TextField label="Password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} disabled={blocked} />
+          <Button type="submit" disabled={loading || blocked} color="secondary" variant="contained" size="large">
             Register
           </Button>
           <Typography variant="body2">

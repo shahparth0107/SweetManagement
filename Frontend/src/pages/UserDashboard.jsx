@@ -45,7 +45,7 @@ export default function UserDashboard() {
     }
 
     return (
-        <Container maxWidth="lg" sx={{ py: { xs: 2, md: 12 } }}>
+        <Container maxWidth="lg" sx={{ py: { xs: 2, md: 12 }, marginTop: '0 auto' }}>
             <Typography variant="h3" sx={{ fontWeight: 900, textAlign: 'center', mb: { xs: 1.5, md: 5 } }}>
                 Browse Sweets
             </Typography>

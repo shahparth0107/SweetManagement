@@ -63,7 +63,7 @@ export default function Admin() {
   }
 
   return (
-    <Box sx={{ mx: 'auto', maxWidth: 1700, width: '100%', p: { xs: 1.5, md: 5 } }}>
+    <Box sx={{ mx: 'auto', maxWidth: 1700, width: '100%', p: { xs: 1.5, md: 5 } , marginTop: '0 auto' }}>
       <Paper sx={{ p: { xs: 2, md: 7 }, mb: { xs: 2, md: 3 } }}>
         <Typography variant="h5" sx={{ mb: 4, fontWeight: 700, textAlign: 'center' }}>
           {editing ? 'Edit Sweet' : 'Add Sweet'}

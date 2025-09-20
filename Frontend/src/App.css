@@ -42,14 +42,24 @@
 }
 
 /* Add this CSS or update your main container's class */
-.center-container {
+/* .center-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #f8f8f8; /* Optional: for contrast */
-}
+/* } */ */
 
+.center-container {
+  max-width: 1200px;   /* or any width you prefer */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 22px;  /* optional: for some breathing space */
+  padding-right: 32px; /* optional: for some breathing space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .home-center-container {
   max-width: 1200px;         /* Adjust as needed */
   margin: 40px auto 0 auto;  /* Less space from top, auto left/right */
