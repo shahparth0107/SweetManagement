@@ -91,7 +91,13 @@ npm run dev            # starts Vite dev server
 
 ## 4) Screenshot
 
-<img width="1440" height="814" alt="image" src="https://github.com/user-attachments/assets/409d86be-91d5-45e9-b50c-c30b32e02746" />
+<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/1a4c5f9f-402b-4559-8321-65138ac87d07" />
+
+<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/409d86be-91d5-45e9-b50c-c30b32e02746" />
+<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/725bed4f-29fd-4cb2-ba83-279c86a452a2" />
+<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/0ed4c704-a606-4872-bd09-b53aa02331b2" />
+
+
 
 
 
