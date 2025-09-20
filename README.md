@@ -28,8 +28,8 @@ SweetManagement/
 
 
 ## Table of Contents
-- [Features](#features)
-- [Tech Stack](#tech-stack)
+- [Features](#Features)
+- [Tech Stack](#Tech-Stack)
 - [Quick Start](#quick-start)
 - [Screenshot](#screenshot)
 - [My AI Usage](#my-ai-usage)
@@ -66,7 +66,7 @@ SweetManagement/
 
 ---
 
-## 3)## Quick Start
+## 3) Quick Start
 
 **Prerequisites**
 - Node.js **18+**
@@ -82,7 +82,6 @@ cd Backend
 cp .env.example .env   # if present; else create .env (see below)
 npm install
 npm run dev            # dev with nodemon (if configured)
-# or:
 npm start              # production start
 
 ### 3.3) Frontend
@@ -92,6 +91,7 @@ npm run dev            # starts Vite dev server
 
 ## 4) Screenshot
 
+<img width="1440" height="814" alt="image" src="https://github.com/user-attachments/assets/409d86be-91d5-45e9-b50c-c30b32e02746" />
 
 
 
