@@ -91,11 +91,11 @@ npm run dev            # starts Vite dev server
 
 ## 4) Screenshot
 
-<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/1a4c5f9f-402b-4559-8321-65138ac87d07" />
+<img width="440" height="254" alt="image" src="https://github.com/user-attachments/assets/1a4c5f9f-402b-4559-8321-65138ac87d07" />
 
-<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/409d86be-91d5-45e9-b50c-c30b32e02746" />
-<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/725bed4f-29fd-4cb2-ba83-279c86a452a2" />
-<img width="940" height="614" alt="image" src="https://github.com/user-attachments/assets/0ed4c704-a606-4872-bd09-b53aa02331b2" />
+<img width="440" height="254" alt="image" src="https://github.com/user-attachments/assets/409d86be-91d5-45e9-b50c-c30b32e02746" />
+<img width="440" height="254" alt="image" src="https://github.com/user-attachments/assets/725bed4f-29fd-4cb2-ba83-279c86a452a2" />
+<img width="440" height="254" alt="image" src="https://github.com/user-attachments/assets/0ed4c704-a606-4872-bd09-b53aa02331b2" />
 
 
 
@@ -106,22 +106,22 @@ npm run dev            # starts Vite dev server
 
 ## 5) My AI Usage 
 ### Tools used
-ChatGPT (GPT-5 Thinking)
-1.) Authored backend middleware (JWT verification, role guard, error handling).
-2.) Implemented the Item Reduce / inventory decrement API (validation, safe updates, response schema).
-3.) Helped scaffold and refine the Frontend (components/pages, state management patterns, API client usage, form flows).
-4.) Assisted with documentation polish and clarifying test commands/sections.
+###ChatGPT (GPT-5 Thinking)
+##1.) Authored backend middleware (JWT verification, role guard, error handling).
+##2.) Implemented the Item Reduce / inventory decrement API (validation, safe updates, response schema).
+##3.) Helped scaffold and refine the Frontend (components/pages, state management patterns, API client usage, form flows).
+##4.) Assisted with documentation polish and clarifying test commands/sections.
 
-Cursor (for Test-Driven Development)
-1.) Drove a TDD loop (red → green → refactor) for both Backend and Frontend.
-2.) Generated initial Jest test scaffolds, iterated failing tests into passing code, and surfaced refactor opportunities.
-3.) In-editor runs to quickly iterate on unit/integration tests.
+###Cursor (for Test-Driven Development)
+##1.) Drove a TDD loop (red → green → refactor) for both Backend and Frontend.
+##2.) Generated initial Jest test scaffolds, iterated failing tests into passing code, and surfaced refactor opportunities.
+##3.) In-editor runs to quickly iterate on unit/integration tests.
 
 ### How I used them
 
-1.) Broke work into small prompts (per middleware/endpoint/component), reviewed AI output, then integrated selectively.
-2.) Kept security & correctness on me: verified JWT handling, avoided double hashing, reviewed DB operations for concurrency and validation, and ensured ENV-based secrets.
-3.) Followed TDD discipline with Cursor: wrote failing tests first, made them pass with minimal code, and refactored with tests as safety nets.
+##1.) Broke work into small prompts (per middleware/endpoint/component), reviewed AI output, then integrated selectively.
+##2.) Kept security & correctness on me: verified JWT handling, avoided double hashing, reviewed DB operations for concurrency and validation, and ensured ENV-based secrets.
+##3.) Followed TDD discipline with Cursor: wrote failing tests first, made them pass with minimal code, and refactored with tests as safety nets.
 
 
 
