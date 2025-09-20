@@ -8,9 +8,9 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
 function validateInput(body){
-    const name = (body.username).toString().trim();
-    const email = (body.email).toString().trim().toLowerCase();
-    const password = (body.password).toString();
+    const name = (body.username || "").toString().trim();
+    const email = (body.email || "").toString().trim().toLowerCase();
+    const password = (body.password || "").toString();
     
     if(!name || !email || !password){
         return { status: false, message: "All fields are required" };
@@ -25,36 +25,40 @@ function validateInput(body){
 }
 
 exports.register = async (req, res) => {
-    const { username, email, password } = req.body;
-    const validation = validateInput(req.body);
-    if(!validation.status){
-        return res.status(400).json({ message: validation.message });
-    }
-    try {
-        let user = await User.findOne({ email });
-        if (user) {
-            return res.status(400).json({ message: "User already exists" });
-        }
-        const hashedPassword = await bcrypt.hash(password, 10);
+  const { username, email, password } = req.body;
+  const validation = validateInput(req.body);
+  if (!validation.status) {
+    return res.status(400).json({ message: validation.message });
+  }
 
-        user = new User({ 
-            username, 
-            email, 
-            password: hashedPassword, 
-            role: "user" });
-
-        await user.save();
-        res.status(201).json({ message: "User registered successfully" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server error" });
+  try {
+    // Ensure unique email
+    let user = await User.findOne({ email: email.toLowerCase() });
+    if (user) {
+      return res.status(400).json({ message: 'User already exists' });
     }
+
+    // IMPORTANT: do NOT hash here; let the model pre-save hook hash it
+    user = new User({
+      username,
+      email: email.toLowerCase(),
+      password,          // raw password; model hook will hash
+      role: 'user',
+    });
+
+    await user.save();
+    return res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error('Register Error:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
 };
+
 
 exports.login = async (req, res) => {
     try {
         
-            const email = (req.body.email);
+            const email = (req.body.email || "").toString().toLowerCase();
     const password = (req.body.password || "").toString();
 
 
@@ -62,7 +66,7 @@ exports.login = async (req, res) => {
             return res.status(400).json({ error: "Email and password are required" });
         }
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email: email.toLowerCase() });
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
@@ -99,6 +103,6 @@ exports.login = async (req, res) => {
 
     } catch (e) {
         console.error("Login Error:", e);
-        res.status(500).json({ error: e.message || "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 }

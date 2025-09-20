@@ -3,7 +3,7 @@ const Sweet = require("../models/sweets");
 exports.createSweet = async (req, res) => {
     try {
         const { name, description, price, category, imageUrl, quantity } = req.body;
-        if (!name || !description || price < 0 || !category || !imageUrl || quantity == null) {
+        if (!name || !description || price < 0 || !category || !imageUrl || quantity == null || quantity < 0) {
             return res.status(400).json({ message: "All fields are required" });
         }
         const sweet = new Sweet({ name, price, description, category, imageUrl, quantity });

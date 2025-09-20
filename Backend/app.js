@@ -36,12 +36,18 @@ app.use('/api/sweets', require('./routes/sweetroute'));
 // app.use((_req, res) => res.status(404).json({ message: 'Not found' }));
 
 
-// start after DB connects
-connectDB()
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
-  })
-  .catch((err) => {
-    console.error('DB connect error:', err);
-    process.exit(1);
-  });
+// Export app for testing
+module.exports = app;
+
+// Only start server if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  // start after DB connects
+  connectDB()
+    .then(() => {
+      app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+    })
+    .catch((err) => {
+      console.error('DB connect error:', err);
+      process.exit(1);
+    });
+}

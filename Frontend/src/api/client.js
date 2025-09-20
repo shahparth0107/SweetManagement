@@ -1,6 +1,19 @@
 // src/api/client.js
 import axios from 'axios'
-const BASE = import.meta.env.VITE_API_URL || '/api'
+
+// Handle different environments
+let BASE;
+if (process.env.NODE_ENV === 'test') {
+  BASE = 'http://localhost:6000/api';
+} else {
+  // Check if we're in a Vite environment
+  try {
+    BASE = import.meta.env.VITE_API_URL || '/api';
+  } catch (e) {
+    // Fallback for environments without import.meta
+    BASE = '/api';
+  }
+}
 
 export const api = axios.create({ baseURL: BASE, headers: { 'Content-Type': 'application/json' } })
 api.interceptors.request.use((config) => {
